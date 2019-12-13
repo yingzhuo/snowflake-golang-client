@@ -3,7 +3,7 @@
 ### 安装:
 
 ```bash
-go get github.com/yingzhuo/snowflake-golang-client
+go get -u github.com/yingzhuo/snowflake-golang-client
 ```
 
 ### 使用例:
