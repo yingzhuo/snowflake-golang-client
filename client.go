@@ -4,10 +4,11 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/golang/protobuf/proto"
 	"io/ioutil"
 	"net/http"
 	"strings"
+
+	"github.com/golang/protobuf/proto"
 )
 
 type Config struct {
@@ -71,6 +72,15 @@ func (cli *Client) NextIds(n int) []int64 {
 		return cli.doNextProtobufIds(url)
 	default:
 		panic(errors.New("unsupported response type '" + cli.responseType + "'")) // 不会运行到此处
+	}
+}
+
+func (cli *Client) Ping() bool {
+	url := fmt.Sprintf("http://%s:%d/ping", cli.host, cli.port)
+	if resp, err := http.Get(url); err != nil {
+		return false
+	} else {
+		return resp.StatusCode == 200
 	}
 }
 

@@ -13,6 +13,7 @@ package main
 
 import (
 	"fmt"
+
 	cli "github.com/yingzhuo/snowflake-golang-client"
 )
 
@@ -23,6 +24,11 @@ func main() {
 		Port:         8080,
 		ResponseType: cli.Protobuf,
 	})
+
+	if !client.Ping() {
+		fmt.Println("链接失败")
+		return
+	}
 
 	// 生成多个ID
 	for _, v := range client.NextIds(10) {
