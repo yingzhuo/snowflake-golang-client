@@ -20,15 +20,9 @@ import (
 func main() {
 
 	client := cli.NewClient(&cli.Config{
-		Host:         "localhost",
-		Port:         8080,
-		ResponseType: cli.Protobuf,
+		Host: "localhost",
+		Port: 8080,
 	})
-
-	if !client.Ping() {
-		fmt.Println("链接失败")
-		return
-	}
 
 	// 生成多个ID
 	for _, v := range client.NextIds(10) {

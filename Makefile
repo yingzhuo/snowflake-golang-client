@@ -7,12 +7,9 @@ fmt:
 	@go fmt ./...
 	@go mod tidy
 
-protoc:
-	protoc -I=$(CURDIR)/proto/ --go_out=$(CURDIR) $(CURDIR)/proto/snowflake.proto
-
-github: protoc fmt
+github: fmt
 	git add .
 	git commit -m "$(TIMESTAMP)"
 	git push
 
-.PHONY: default fmt protoc github
+.PHONY: default fmt github

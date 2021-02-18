@@ -1,8 +1,0 @@
-syntax = "proto3";
-package snowflake;
-
-option go_package = "snowflake_golang_client";
-
-message IdList {
-    repeated int64 ids = 1;
-}
